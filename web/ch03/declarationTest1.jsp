@@ -19,8 +19,14 @@
 %>
 <%!
     String str2 = "The... GOD";
+    String id = "The... DEVIL";
+
+    public String getId(){
+        return id;
+    }
 %>
 
 결과 : <%=str1%>
+getID의 method 실행결과 : <%=getId()%>
 </body>
 </html>
