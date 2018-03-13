@@ -69,6 +69,10 @@
         <td>
             <a href="ch04/sessionTestForm.jsp">세션 로그인 예제</a>
         </td>
+        <!-- ch05 -->
+        <td>
+            <a href="ch05/main.jsp"><b>Include 태그를 통한 Module화(그리드를 사용)</b></a>
+        </td>
     </tr>
     <tr>
         <td>
@@ -77,6 +81,10 @@
         <!-- ch04 -->
         <td>
             <a href="ch04/applicationTest.jsp">어플리케이션 Test예제</a>
+        </td>
+        <!-- ch05 -->
+        <td>
+            <a href="ch05/forwardForm.jsp"><b>Forward Tag의 사용</b></a>
         </td>
     </tr>
     <tr>
