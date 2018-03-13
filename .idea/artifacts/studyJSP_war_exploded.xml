@@ -7,7 +7,11 @@
         <element id="directory" name="classes">
           <element id="module-output" name="studyJSP" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="application" name="lib" />
+        </element>
       </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/META-INF" />
     </root>
   </artifact>
 </component>
