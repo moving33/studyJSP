@@ -39,13 +39,16 @@
     <!-- ch03 -->
     <tr>
         <th>
-            ch03
+            ch03 JSP의 구성요소
         </th>
         <th>
-            ch04
+            ch04 JSP의 내장객체와 영역
         </th>
         <th>
-            ch05
+        ch05 JSP의 액션태그
+    </th>
+        <th>
+            ch7 Ajax(Asynchronous Javascript+ XML)
         </th>
     </tr>
     <tr>
@@ -60,6 +63,10 @@
         <td>
             <a href="ch05/includeTestForm.jsp">include Action Tag Ex</a>
         </td>
+        <!-- ch07 -->
+        <td>
+            <a href="ch07/jQTest.jsp">jQuery Test!</a>
+        </td>
     </tr>
     <tr>
         <td>
@@ -72,6 +79,10 @@
         <!-- ch05 -->
         <td>
             <a href="ch05/main.jsp"><b>Include 태그를 통한 Module화(그리드를 사용)</b></a>
+        </td>
+        <!-- ch07 -->
+        <td>
+            <a href="ch07/jQTest3.jsp">jQuery Test3 (mouse Event)</a>
         </td>
     </tr>
     <tr>
@@ -86,10 +97,48 @@
         <td>
             <a href="ch05/forwardForm.jsp"><b>Forward Tag의 사용</b></a>
         </td>
+        <!-- ch07 -->
+        <td>
+            <a href="ch07/jQTest4.jsp">jQuery Ajax - load Method</a>
+        </td>
     </tr>
     <tr>
         <td>
             <a href="ch04/requestTestForm1.jsp">request 객체</a>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <!-- ch07 -->
+        <td>
+            <a href="ch07/jQTest5.jsp">jQuery Ajax - load 응답처리 </a>
+        </td>
+    </tr>
+    <!-- 5번째 예제 -->
+    <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <!-- ch07 -->
+        <td>
+            <a href="ch07/jQTest8.jsp">jQuery Ajax - .ajax의 사용 </a>
+        </td>
+    </tr>
+    <!-- 6번째 예제 -->
+    <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <!-- ch07 -->
+        <td>
+            <a href="ch07/question/1.jsp">1번문제 </a>
         </td>
     </tr>
 
@@ -111,3 +160,4 @@
 %>
 </body>
 </html>
+
