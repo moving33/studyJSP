@@ -45,10 +45,13 @@
             ch04 JSP의 내장객체와 영역
         </th>
         <th>
-        ch05 JSP의 액션태그
-    </th>
+            ch05 JSP의 액션태그
+        </th>
         <th>
-            ch7 Ajax(Asynchronous Javascript+ XML)
+            ch07 Ajax(Asynchronous Javascript+ XML)
+        </th>
+        <th>
+            ch08  Java Bean , Logic with JSP
         </th>
     </tr>
     <tr>
@@ -67,6 +70,10 @@
         <td>
             <a href="ch07/jQTest.jsp">jQuery Test!</a>
         </td>
+        <!-- ch08 -->
+        <td>
+            <a href="ch08/beanTestForm.jsp">Java Bean Test</a>
+        </td>
     </tr>
     <tr>
         <td>
@@ -83,6 +90,10 @@
         <!-- ch07 -->
         <td>
             <a href="ch07/jQTest3.jsp">jQuery Test3 (mouse Event)</a>
+        </td>
+        <!-- ch08 -->
+        <td>
+            <a href="ch08/regForm.jsp">기본 회원 가입 양식</a>
         </td>
     </tr>
     <tr>
