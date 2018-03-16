@@ -53,6 +53,7 @@
         <th>
             ch08  Java Bean , Logic with JSP
         </th>
+
     </tr>
     <tr>
         <td>
@@ -74,6 +75,7 @@
         <td>
             <a href="ch08/beanTestForm.jsp">Java Bean Test</a>
         </td>
+
     </tr>
     <tr>
         <td>
@@ -152,9 +154,33 @@
             <a href="ch07/question/1.jsp">1번문제 </a>
         </td>
     </tr>
-
-
-
+</table>
+<hr>
+<!-- ch09 부터 ... -->
+<table>
+    <tr>
+        <th>
+            ch 09 DB,JAVA 연결
+        </th>
+    </tr>
+    <tr>
+        <!-- ch09 -->
+        <td>
+            <a href="ch09/driverTest.jsp">db connect Test</a>
+        </td>
+    </tr>
+    <tr>
+        <!-- ch09 -->
+        <td>
+            <a href="ch09/insertForm.jsp">insert From for db</a>
+        </td>
+    </tr>
+    <tr>
+        <!-- ch09 -->
+        <td>
+            <a href="ch09/selectPro.jsp">select from DB</a>
+        </td>
+    </tr>
 </table>
 <br>
 <b>현재 페이지 Session의 ID: </b>
