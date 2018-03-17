@@ -187,14 +187,7 @@
 <%=a%>
 <br>
 <br>
-<b>현재 페이지의 사용되는 쿠키의 Name들 : </b>
-<%
-    for (int i = 0; i < b.length; i++) {
-%><%=b[i].getName()%>&nbsp;
 
-<%
-    }
-%>
 </body>
 </html>
 
