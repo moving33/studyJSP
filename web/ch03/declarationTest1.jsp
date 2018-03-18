@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.sql.Connection" %>
+<%@ page import="ch12.board.BoardDBBean" %><%--
   Created by IntelliJ IDEA.
   User: J
   Date: 2018-03-13
@@ -25,7 +26,11 @@
         return id;
     }
 %>
-
+<%--<%
+    int a = BoardDBBean.getInstance().test();
+    out.print(a);
+%>--%>
+<hr>
 결과 : <%=str1%>
 getID의 method 실행결과 : <%=getId()%>
 </body>

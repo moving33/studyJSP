@@ -1,0 +1,31 @@
+.headerTest {
+    margin: 10px 30px 10px 30px;
+
+}
+
+.loginForm {
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.loginForm > .buttonDiv {
+    text-align: left;
+    margin-left: 8%;
+}
+
+.headerTest_imgDiv {
+
+}
+
+header > img{
+
+}
+
+.articleTest{
+
+}
+
+.articleTest_content{
+
+}

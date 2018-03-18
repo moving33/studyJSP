@@ -15,7 +15,7 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="jsptest@192.168.137.128" uuid="b7887c0c-268b-44f8-894b-9528a947ebcb">
+    <data-source source="LOCAL" name="Home in DB (MySQL)" uuid="188d511b-90cc-4311-a4e5-5459649f2590">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

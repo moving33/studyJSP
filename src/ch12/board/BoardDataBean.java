@@ -6,7 +6,7 @@ package ch12.board;
 
 import java.sql.Timestamp;
 
-public class BoardDateBean {
+public class BoardDataBean {
 
     private int num; //글 번호
     private String writer ; // 작성자
