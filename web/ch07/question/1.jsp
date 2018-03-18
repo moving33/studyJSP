@@ -52,8 +52,10 @@
                     }
                 })
             });
-
+        JSON.stringify(JSONObject)
+            JSON.parse(JSONObject)
         });
+
     </script>
 
 </head>
