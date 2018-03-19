@@ -36,14 +36,14 @@
                 <div class="col-sm-2"></div>-- 나중에 기회되면 시도 --%>
 
                 <!-- Login -->
-                <div class="col-sm-5">
+                <div class="col-sm-5" id="main_auth">
                     <jsp:include page="loginForm.jsp"/>
                 </div>
             </div>
         </nav>
     </header>
     <article class="articleTest">
-        <div class="articleTest_content">
+        <div class="articleTest_content" id="main_board">
             <jsp:include page="main_board.jsp"></jsp:include>
         </div>
     </article>

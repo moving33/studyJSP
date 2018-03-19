@@ -1,5 +1,6 @@
 <%@ page import="java.sql.Connection" %>
-<%@ page import="ch12.board.BoardDBBean" %><%--
+<%@ page import="ch12.board.BoardDBBean" %>
+<%@ page import="java.io.*" %><%--
   Created by IntelliJ IDEA.
   User: J
   Date: 2018-03-13
@@ -33,5 +34,6 @@
 <hr>
 결과 : <%=str1%>
 getID의 method 실행결과 : <%=getId()%>
+
 </body>
 </html>

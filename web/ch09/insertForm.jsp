@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form method="post" action="insertPro.jsp">
+<form method="post" action="insertPro.jsp" style="margin: 25px;">
     <dl>
         <dd>
             <label for="id">아이디</label>
@@ -38,10 +38,3 @@
         </dd>
     </dl>
 </form>
-
-<%
-    String test = "e5b8d466a948db9d142e674170b3eea80527e70179d21ae3794c5ce00d3a25f2";
-   byte[] a =test.getBytes();
-
-%>
-<%=a.toString()%> bit

@@ -21,7 +21,7 @@
     Connection conn = null;
     PreparedStatement pstmt = null;
     try {
-        String jdbcURL = "jdbc:mysql://192.168.88.128:3306/jsptest";
+        String jdbcURL = "jdbc:mysql://192.168.137.128:3306/jsptest";
         String dbID = "moving33";
         String dbpass = "1234";
 
@@ -52,7 +52,7 @@
 
         out.println("회원 가입을 축하합니다!");
 %>
-<a href="/index.jsp">첫화면으로 가기</a>
+<a href="/ch12/main.jsp">첫화면으로 가기</a>
 <%
 
     } catch (Exception e) {
