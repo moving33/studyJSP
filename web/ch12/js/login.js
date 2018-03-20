@@ -4,12 +4,11 @@ $(document).ready(function () {
     //[로그인] 버튼을 클릭하면 자동 실행
     //입력한 ID와 비밀번호를 갖고 loginPro.jsp 페이지 실행
 
-    $("#login").submit(function () {
+    $("#loginBtn").click(function () {
         var query = {
             id: $("#id").val(),
             passwd: SHA256($("#passwd").val())
         };
-
         //전송
 
         $.ajax({
@@ -32,7 +31,7 @@ $(document).ready(function () {
                 }
             }
         });
-    })
+    });
 
 
     //[로그아웃]
@@ -50,14 +49,13 @@ $(document).ready(function () {
     });
 
     $("#signBtn").click(function () {
-        $.ajax({
-           type: "GET",
-           url:"/ch09/insertForm.jsp",
-            success:function (data) {
-                $("#main_board").load("/ch09/insertForm.jsp");
-            }
-        });
-
+            $.ajax({
+                type: "GET",
+                url: "/ch09/insertForm.jsp",
+                success: function (data) {
+                    $("#main_board").load("/ch09/insertForm.jsp");
+                }
+            });
         }
     );
 
@@ -82,8 +80,7 @@ $(document).ready(function () {
 
     }*/
 
-})
-;
+});
 
 
 //sha256

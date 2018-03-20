@@ -18,13 +18,12 @@
     if (id == null || id.equals("")) {//인증되지 x 사용자
 %>
 <div id="status" class="loginForm">
-    <form action="loginPro.jsp" id="login">
         <div class="row">
             <div class="col-sm-5">
                 <label for="id">아이디</label>
             </div>
             <div class="col-sm-7">
-                <input id="id" name="id" type="email" placeholder="" required>
+                <input id="id" name="id" type="text" required>
             </div>
         </div>
         <div class="row">
@@ -36,10 +35,9 @@
             </div>
         </div>
         <div class="buttonDiv">
-            <button class="btn btn-primary" type="submit">로그인</button>
+            <button class="btn btn-primary" id="loginBtn">로그인</button>
             <button class="btn btn-primary" id="signBtn">회원가입</button>
         </div>
-    </form>
 </div>
 <%
 } else { //인증된 사용자

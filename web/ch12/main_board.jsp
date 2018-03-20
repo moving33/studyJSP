@@ -8,5 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <meta name="viewport" content="width=device-width, initial-scale = 1.0"/>
 <%
-    //todo 게시판 보드 뷰어,js 만들기.
+    String id = "";
+    try {
+        id = (String) session.getAttribute("id");
+%>
+<%
+    if (id == null || id.equals("")) {
+%>
+<div>
+    로그인 하세요 ! 게시판은 회원만 볼 수 있습니다!
+</div>
+<%
+} else {
+%>
+<div>
+    <jsp:include page="list.jsp"></jsp:include>
+</div>
+<%
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 %>
