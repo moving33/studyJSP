@@ -44,6 +44,9 @@
         </nav>
     </header>
     <article class="articleTest">
+        <div class="articleTest_content" id="write_board">
+
+        </div>
         <div class="articleTest_content" id="main_board">
             <jsp:include page="main_board.jsp"></jsp:include>
         </div>

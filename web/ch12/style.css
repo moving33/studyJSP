@@ -24,6 +24,44 @@ header > img{
 
 .articleTest {
     margin: 25px;
+
 }
 .articleTest_content{
+    margin: 15px;
+    background-image: url("/image/fennec_fox-wallpaper-1920x1080.jpg");
+
+    width: 95%;
+    height: 1100px;
+    position: absolute;
+    overflow: hidden;
+}
+
+#write-form{
+    margin: auto;
+}
+#write-form td {
+    border: none;
+}
+#write-form textarea {
+    width: 99%;
+}
+
+#writeNew{
+    margin: auto;
+
+}
+
+.collapse.show {
+    display: block;
+    opacity: 0.8;
+    height: 200px;
+    padding-left: 10px;
+    padding-top: 5px;
+    position: absolute;
+    background: azure;
+    margin-top: auto;
+    /* margin: auto; */
+    border-radius: 20px;
+    width: 66%;
+    margin-top: 10px;
 }

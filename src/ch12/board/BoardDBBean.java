@@ -76,7 +76,7 @@ public class BoardDBBean {
             }
 
             //글 추가 하기
-            pstmt = conn.prepareStatement("INSERT INTO board(writer, subject, content, passwd, reg_date, ip, readcount, ref, re_step, re_level) " +
+            pstmt = conn.prepareStatement("INSERT INTO board(writer, subject, content, passwd, reg_date, ip, ref, re_step, re_level) " +
                     "VALUES (?,?,?,?,?,?,?,?,?)");
             pstmt.setString(1, article.getWriter());
             pstmt.setString(2, article.getSubject());
@@ -113,6 +113,53 @@ public class BoardDBBean {
                 }
             }
         }
+        return x;
+    }
+
+
+    //board Table에 저장된 전체글의 수를 얻어냄 <---- list.jsp에서 사용
+    public int getArticleCount(){
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int x= 0;
+
+        try{
+            conn = getConnection();
+
+            pstmt = conn.prepareStatement("SELECT COUNT(*) FROM board");
+            rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                x=rs.getInt(1);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+        }
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException sqe) {
+            }
+        }
+        if (pstmt != null) {
+            try {
+                pstmt.close();
+            } catch (SQLException sqe) {
+            }
+        }
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException sqe) {
+            }
+        }
+
+
         return x;
     }
 

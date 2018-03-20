@@ -11,12 +11,13 @@
     String id = "";
     try {
         id = (String) session.getAttribute("id");
+        System.out.println(id);
 %>
 <%
     if (id == null || id.equals("")) {
 %>
-<div>
-    로그인 하세요 ! 게시판은 회원만 볼 수 있습니다!
+<div class="alert alert-success text-center">
+    <strong>로그인 하세요 ! 게시판은 회원만 볼 수 있습니다!</strong>
 </div>
 <%
 } else {

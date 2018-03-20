@@ -1,89 +1,85 @@
-var status = true;
+var wStatus = true;
 
 $(document).ready(function () {
-    //[로그인] 버튼을 클릭하면 자동 실행
-    //입력한 ID와 비밀번호를 갖고 loginPro.jsp 페이지 실행
+    // 글쓰기 폼의 [등록] 버튼을 클릭하면 자동실행
+    $("#regist").click(function () {
+        formCheckIt(); //글쓰기 폼의 입력 여부 체크
+        if (wStatus) {//입력란의 값을 모두 입력한 경우
+            var pageNum = $("#regist").val();
 
-    $("#loginBtn").click(function () {
-        var query = {
-            id: $("#id").val(),
-            passwd: SHA256($("#passwd").val())
-        };
-        //전송
+            var query = {
+                subject: $("#subject").val(),
+                content: $("#content").val(),
+                passwd: SHA256($("#passwd").val()),
+                ref: $("#ref").val(),
+                re_step: $("#re_step").val(),
+                re_level: $("#re_level").val(),
+                num: $("#num").val()
+            };
 
-        $.ajax({
-            type: "POST",
-            url: "loginPro.jsp",
-            data: query,
-            success: function (data) {
-                if (data == 1) {//로그인성공
-                    $("#main_auth").load("loginForm.jsp");
-                    $("#main_board").load("list.jsp");
-                } else if (data == 0) {//비밀번호 틀림
-                    alert("비밀번호가 맞지 않습니다.");
-                    $("#passwd").val("");
-                    $("#passwd").focus();
-                } else if (data == -1) {// id가 틀림
-                    alert("아이디가 맞지 않습니다.");
-                    $("#id").val("");
-                    $("#passwd").val("");
-                    $("#id").focus();
+            //writePro.jsp 실행
+
+            $.ajax({
+                type: "POST",
+                url: "writePro.jsp",
+                data: query,
+                success: function (data) {
+                    if (data == 1) {//글추가 성공
+                        alert("글이 등록 되었습니다!");
+                        var query = "list.jsp?pageNum=" + pageNum;
+                        $("#main_board").load(query);
+                    }
                 }
-            }
-        });
+
+            });
+
+        }
     });
 
 
-    //[로그아웃]
-    //logout.jsp 페이지를 실행
-    $("#logout").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "logout.jsp",
-            success: function (data) {
-                $("#main_auth").load("loginForm.jsp");
-                $("#main_board").load("main_board.jsp");
-            }
-        });
+    // 글쓰기 폼의 [취소] 버튼을 클릭하면 자동실행
+    $("#cancle").click(function () {
+        var pageNum = $("#cancle").val();
+        var query = "list.jsp?pageNum="+pageNum;
+        $("#main_board").load(query);
     });
 
-    $("#signBtn").click(function () {
+    //게시판에서 쓰기 버튼을 누르면 발동!
+    $("#insert").click(function () {
+        $("#main_board").load("writeForm.jsp");
 
-            $("#main_board").load("/ch09/insertForm.jsp");
-
-        }
-    );
-
-
-    /*
-    //required로 대체함.
-    //인증되지 않은 사용자 영역에서 사용하는 입력 폼의 입력값 유무 확인
-    function checkIt() {
-        status=true;
-        if(!$.trim($("#id").val())){
-            alert("아이디를 입력하세요.");
-            $("#id").focus();
-            status = false;
-            return false;
-        }
-        if(!$.trim($("#passwd").val())){
-            alert("비밀번호를 입력하세요.");
-            $("#passwd").focus();
-            status = false;
-            return false;
-        }
-
-    }*/
-
-    ///////////////////글쓰기////////////////
-
-    //글쓰기 - 등록
-
+    });
 
 });
 
+//글쓰기 폼의 입력값 유무 확인
 
-//sha256
+function formCheckIt() {
+    wStatus = true;
+    if (!$.trim($("#subject").val())) {
+        alert("제목을 입력하세요.");
+        $("#subject").focus();
+        wStatus = false;
+        return false;
+    }
+
+    if (!$.trim($("#content").val())) {
+        alert("내용을 입력 하세요.");
+        $("#content").focus();
+        wStatus = false;
+        return false;
+    }
+
+    if (!$.trim($("#passwd").val())) {
+        alert("패스워드를 입력하세요.");
+        $("#passwd").focus();
+        wStatus = false;
+        return false;
+    }
+
+}
+
+//SHA
 function SHA256(s) {
 
     var chrsz = 8;
@@ -238,4 +234,3 @@ function SHA256(s) {
     return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
 
 }
-
