@@ -51,17 +51,10 @@ header > img{
 
 }
 
-.collapse.show {
-    display: block;
-    opacity: 0.8;
-    height: 200px;
-    padding-left: 10px;
-    padding-top: 5px;
-    position: absolute;
-    background: azure;
-    margin-top: auto;
-    /* margin: auto; */
-    border-radius: 20px;
-    width: 66%;
-    margin-top: 10px;
+/*pagination*/
+.articleTest > .pagePro{
+    text-align: center;
+    margin: auto;
+    display: table;
 }
+

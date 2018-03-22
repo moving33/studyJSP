@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%
+    String selectNum = request.getParameter("selectNum");
+    String pageNum = request.getParameter("pageNum");
+%>
 <meta name="viewport" content="width=device-width, initial-scale = 1.0"/>
 
 <html>
@@ -22,6 +26,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
+    <script src="js/write.js"></script>
 
 </head>
 <body>
@@ -44,11 +49,12 @@
         </nav>
     </header>
     <article class="articleTest">
-        <div class="articleTest_content" id="write_board">
 
-        </div>
         <div class="articleTest_content" id="main_board">
-            <jsp:include page="main_board.jsp"></jsp:include>
+
+            <jsp:include page="main_board.jsp">
+                <jsp:param name="selectNum" value="<%=selectNum%>"/>
+            </jsp:include>
         </div>
     </article>
 

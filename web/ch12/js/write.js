@@ -40,15 +40,36 @@ $(document).ready(function () {
     // 글쓰기 폼의 [취소] 버튼을 클릭하면 자동실행
     $("#cancle").click(function () {
         var pageNum = $("#cancle").val();
-        var query = "list.jsp?pageNum="+pageNum;
+        var query = "list.jsp?pageNum=" + pageNum;
         $("#main_board").load(query);
     });
 
     //게시판에서 쓰기 버튼을 누르면 발동!
     $("#insert").click(function () {
         $("#main_board").load("writeForm.jsp");
-
     });
+
+    //댓글 쓰기를 누르면 발동
+    /*$("#insert_re").click(function () {
+
+        var query = {
+            num: $("#selectNum").val(),
+            ref: $("#selectRef").val(),
+            re_step: $("#selectRe_step").val(),
+            re_level: $("#selectRe_level").val(),
+            pageNum: $("#select_pageNum").val()
+
+        };
+        $.post("main_board.jsp", query, function () {
+            $("#main_board").load("writeForm.jsp?num=" + query.num +
+                "&ref=" + query.ref +
+                "&re_step=" + query.re_step +
+                "&re_level=" + query.re_level +
+                "&pageNum=" + query.pageNum);
+        });
+    });
+*/
+
 
 });
 
@@ -76,6 +97,47 @@ function formCheckIt() {
         wStatus = false;
         return false;
     }
+
+}
+
+
+function selectArticle(i,y) {
+
+   $.get("viewArticle.jsp",{selectNum:i , pageNum:y},function (data) {
+       $("#main_board").html(data);
+   });
+
+
+}
+
+function goBack(i) {
+    $.get("list.jsp",{pageNum:i},function(data) {
+        $("#main_board").html(data);
+    });
+}
+
+// [덧글쓰기] 에서 사용
+function writeRe() {
+    var query = {
+        num: $("#selectNum").val(),
+        ref: $("#selectRef").val(),
+        re_step: $("#selectRe_step").val(),
+        re_level: $("#selectRe_level").val(),
+        pageNum: $("#select_pageNum").val()
+    };
+    $.get("writeForm.jsp",query,function(data) {
+        $("#main_board").html(data);
+    });
+}
+
+//페이지 이동
+
+function p(jumpBtn) {
+    alert(jumpBtn.name);
+    var rStr = jumpBtn.name; // 버튼의 이름을 값으로 가져온다
+    $.get("list.jsp",{ pageNum : rStr },function (data) {
+        $("#main_board").html(data);
+    });
 
 }
 

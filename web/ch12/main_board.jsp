@@ -8,10 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <meta name="viewport" content="width=device-width, initial-scale = 1.0"/>
 <%
+    String selectNum = "";
+    String pageNum = "";
+    selectNum = request.getParameter("selectNum");
+    pageNum = request.getParameter("pageNum");
     String id = "";
+
     try {
         id = (String) session.getAttribute("id");
-        System.out.println(id);
 %>
 <%
     if (id == null || id.equals("")) {
@@ -20,11 +24,16 @@
     <strong>로그인 하세요 ! 게시판은 회원만 볼 수 있습니다!</strong>
 </div>
 <%
+
 } else {
 %>
 <div>
     <jsp:include page="list.jsp"></jsp:include>
 </div>
+<div id="contentForm">
+</div>
+
+
 <%
         }
     } catch (Exception e) {

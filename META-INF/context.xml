@@ -7,7 +7,7 @@
               username = "moving33"
               password="1234"
               url="jdbc:mysql://192.168.137.128:3306/jsptest"
-              maxWaitMillis="-1"/>
+              />
 </Context>
 
 

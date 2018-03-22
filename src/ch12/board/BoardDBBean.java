@@ -182,7 +182,8 @@ public class BoardDBBean {
                     BoardDataBean article = new BoardDataBean();
                     article.setNum(rs.getInt("num"));
                     article.setWriter(rs.getString("writer"));
-                    article.setSubject(rs.getString("content"));
+                    article.setSubject(rs.getString("subject"));
+                    article.setContent(rs.getString("content"));
                     article.setPasswd(rs.getString("passwd"));
                     article.setReg_date(rs.getTimestamp("reg_date"));
                     article.setReadcount(rs.getInt("readcount"));
@@ -222,22 +223,41 @@ public class BoardDBBean {
 
     //글 수정 폼에서 사용할 글의 내용 <-- updateForm.jsp
 
-    public BoardDataBean updateGetArticle(int num) {
+    public BoardDataBean updateGetArticle(String numString) {
+        System.out.println(numString.toString()+": 메소드에 들어온 변수");
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        BoardDataBean article = null;
+        BoardDataBean article = new BoardDataBean();
+        int num = 0;
+        if(numString == null && numString ==""){
+            System.out.println("1");
+            return article;
+        }else{
+            if(numString != null && numString !="") {
+                System.out.println("2");
+                num = Integer.valueOf(numString.toString());
+            }
+        }
+
         try {
             conn = getConnection();
 
-            pstmt = conn.prepareStatement("SELECT from board WHERE num=?");
-            pstmt.setInt(1, num);
+            //조회수 올리기
+            pstmt = conn.prepareStatement("UPDATE board SET readcount=readcount+1 WHERE num=?");
+            pstmt.setInt(1,num);
+            pstmt.executeUpdate();
+
+            //가져오기
+            pstmt = conn.prepareStatement("SELECT * FROM board WHERE num=?");
+            pstmt.setInt(1,num);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                article.setNum(rs.getInt("num"));
-                article.setWriter(rs.getString("writer"));
-                article.setSubject(rs.getString("content"));
+                article.setWriter(rs.getString("writer").trim());
+                article.setSubject(rs.getString("subject"));
+                article.setContent(rs.getString("content"));
                 article.setPasswd(rs.getString("passwd"));
                 article.setReg_date(rs.getTimestamp("reg_date"));
                 article.setReadcount(rs.getInt("readcount"));
@@ -245,6 +265,7 @@ public class BoardDBBean {
                 article.setRef_step(rs.getInt("re_step"));
                 article.setRe_level(rs.getInt("re_level"));
                 article.setIp(rs.getString("ip"));
+                article.setNum(rs.getInt("num"));
             }
 
         } catch (Exception e) {
