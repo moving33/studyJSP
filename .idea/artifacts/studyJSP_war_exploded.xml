@@ -8,9 +8,14 @@
           <element id="module-output" name="studyJSP" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="application" name="lib" />
           <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/mysql-connector-java-5.1.46.jar" />
           <element id="library" level="project" name="lib" />
+          <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/xalan-2.7.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/serializer-2.7.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/taglibs-standard-jstlel-1.2.5.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/commons-dbcp2-2.2.0.jar" />
         </element>
       </element>
       <element id="dir-copy" path="$PROJECT_DIR$/META-INF" />

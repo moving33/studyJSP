@@ -803,120 +803,308 @@
     <table id="201" parent="3" name="board">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="202" parent="3" name="member">
+    <table id="202" parent="3" name="client">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="203" parent="201" name="num">
+    <table id="203" parent="3" name="lecture">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="204" parent="3" name="manager">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="205" parent="3" name="member">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="206" parent="3" name="student">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="207" parent="201" name="num">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="204" parent="201" name="writer">
+    <column id="208" parent="201" name="writer">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="205" parent="201" name="subject">
+    <column id="209" parent="201" name="subject">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="206" parent="201" name="content">
+    <column id="210" parent="201" name="content">
       <Position>4</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="207" parent="201" name="passwd">
+    <column id="211" parent="201" name="passwd">
       <Position>5</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="208" parent="201" name="reg_date">
+    <column id="212" parent="201" name="reg_date">
       <Position>6</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="209" parent="201" name="ip">
+    <column id="213" parent="201" name="ip">
       <Position>7</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="210" parent="201" name="readcount">
+    <column id="214" parent="201" name="readcount">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="211" parent="201" name="ref">
+    <column id="215" parent="201" name="ref">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="212" parent="201" name="re_step">
+    <column id="216" parent="201" name="re_step">
       <Position>10</Position>
       <DataType>smallint(6)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="213" parent="201" name="re_level">
+    <column id="217" parent="201" name="re_level">
       <Position>11</Position>
       <DataType>smallint(6)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="214" parent="201" name="PRIMARY">
+    <key id="218" parent="201" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>num</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="215" parent="202" name="id">
+    <column id="219" parent="202" name="num">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="220" parent="202" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="221" parent="202" name="tel">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="222" parent="202" name="lecture_name">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="223" parent="202" name="fk_id">
+      <ColNames>lecture_name</ColNames>
+    </index>
+    <key id="224" parent="202" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>num</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="225" parent="202" name="fk_id">
+      <ColNames>lecture_name</ColNames>
+      <RefSchemaName>jsptest</RefSchemaName>
+      <RefTableName>lecture</RefTableName>
+      <RefColNames>lecture_name</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="226" parent="203" name="lecture_num">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="227" parent="203" name="lecture_name">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="228" parent="203" name="lecturer">
+      <Position>3</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="229" parent="203" name="lecture_student_count">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="230" parent="203" name="lecture_name">
+      <ColNames>lecture_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="231" parent="203" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>lecture_num</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="232" parent="203" name="lecture_name">
+      <ColNames>lecture_name</ColNames>
+      <UnderlyingIndexName>lecture_name</UnderlyingIndexName>
+    </key>
+    <column id="233" parent="204" name="num">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="234" parent="204" name="name">
+      <Position>2</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_bin</Collation>
+    </column>
+    <column id="235" parent="204" name="jumin">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="236" parent="204" name="tel">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="237" parent="204" name="gender">
+      <Position>5</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="238" parent="204" name="hobby">
+      <Position>6</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="239" parent="204" name="num">
+      <ColNames>num</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="240" parent="204" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>jumin</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="241" parent="204" name="num">
+      <ColNames>num</ColNames>
+      <UnderlyingIndexName>num</UnderlyingIndexName>
+    </key>
+    <column id="242" parent="205" name="id">
       <Position>1</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="216" parent="202" name="passwd">
+    <column id="243" parent="205" name="passwd">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="217" parent="202" name="name">
+    <column id="244" parent="205" name="name">
       <Position>3</Position>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="218" parent="202" name="reg_date">
+    <column id="245" parent="205" name="reg_date">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="219" parent="202" name="address">
+    <column id="246" parent="205" name="address">
       <Position>5</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="220" parent="202" name="tel">
+    <column id="247" parent="205" name="tel">
       <Position>6</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="221" parent="202" name="PRIMARY">
+    <key id="248" parent="205" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="249" parent="206" name="ID">
+      <Position>1</Position>
+      <DataType>varchar(12)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="206" name="PASS">
+      <Position>2</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="251" parent="206" name="NAME">
+      <Position>3</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="252" parent="206" name="PHONE">
+      <Position>4</Position>
+      <DataType>varchar(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="206" name="EMAIL">
+      <Position>5</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="206" name="ADDRESS1">
+      <Position>6</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="206" name="ADDRESS2">
+      <Position>7</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="256" parent="206" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

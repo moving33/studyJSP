@@ -51,7 +51,7 @@
             ch07 Ajax(Asynchronous Javascript+ XML)
         </th>
         <th>
-            ch08  Java Bean , Logic with JSP
+            ch08 Java Bean , Logic with JSP
         </th>
 
     </tr>
@@ -179,6 +179,70 @@
         <!-- ch09 -->
         <td>
             <a href="ch09/selectPro.jsp">select from DB</a>
+        </td>
+    </tr>
+</table>
+<br>
+<hr>
+<!-- PDF내용 ... -->
+<table>
+    <tr>
+        <th>
+            ch 15 EL(Expression Language)
+        </th>
+        <th>
+            ch 16 JSTL(Jsp Standard Tag Language)
+        </th>
+    </tr>
+    <tr>
+        <!-- ch15 -->
+        <td>
+            <a href="pdf/eltag/elex1.jsp">elTag 예시</a>
+        </td>
+        <!-- ch16 -->
+        <td>
+           <a href="pdf/jstl/setex.jsp" >JSTL core Tag</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="pdf/eltag/elex2.jsp">elTag 예시2(배열)</a>
+        </td>
+        <!-- ch16 -->
+        <td>
+            <a href="pdf/jstl/ifex.jsp" >JSTL core Tag[IF문]</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="pdf/eltag/elex3.jsp">간단한 표현언어 (EL) 예제</a>
+        </td>
+        <!-- ch16 -->
+        <td>
+            <a href="pdf/jstl/forex2.jsp" >JSTL ForEach 문</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="pdf/eltag/elex4.jsp">표현언어의 기본객체</a>
+        </td>
+        <!-- ch16 -->
+        <td>
+            <a href="pdf/jstl/forex4.jsp" >JSTL ForEach 문 Final</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="pdf/eltag/elex5.jsp">파라미터 처리하기</a>
+        </td>
+        <!-- ch16 -->
+        <td>
+            <a href="pdf/jstl/catchEx.jsp" >JSTL Catch 문 </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="pdf/eltag/elex6.jsp">EL응용 함수 호출</a>
         </td>
     </tr>
 </table>

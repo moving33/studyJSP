@@ -31,6 +31,6 @@
         <jarDirectory url="file://$MODULE_DIR$/WEB-INF/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="lib" level="project" />
   </component>
 </module>
