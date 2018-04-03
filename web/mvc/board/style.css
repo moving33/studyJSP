@@ -1,0 +1,60 @@
+.headerTest {
+    margin: 10px 30px 10px 30px;
+
+}
+
+.loginForm {
+    text-align: center;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.loginForm > .buttonDiv {
+    text-align: left;
+    margin-left: 8%;
+}
+
+.headerTest_imgDiv {
+
+}
+
+header > img{
+
+}
+
+.articleTest {
+    margin: 25px;
+
+}
+.articleTest_content{
+    margin: 15px;
+    background-image: url("/image/fennec_fox-wallpaper-1920x1080.jpg");
+
+    width: 95%;
+    height: 1100px;
+    position: absolute;
+    overflow: hidden;
+}
+
+#write-form{
+    margin: auto;
+}
+#write-form td {
+    border: none;
+}
+#write-form textarea {
+    width: 99%;
+}
+
+#writeNew{
+    margin: auto;
+
+}
+
+/*pagination*/
+.articleTest > .pagePro{
+    text-align: center;
+    margin: auto;
+    display: table;
+}
+

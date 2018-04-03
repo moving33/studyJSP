@@ -2,6 +2,7 @@ package mvcMem.control;
 
 import mvcMem.action.Action;
 import mvcMem.action.IndexAction;
+import mvcMem.action.idCheckAction;
 import mvcMem.action.regFormAction;
 
 public class ActionFactory {
@@ -23,8 +24,15 @@ public class ActionFactory {
             case "index":
                 action = new IndexAction();
                 break;
+                //회원가입 폼
             case "regForm":
                 action = new regFormAction();
+                break;
+                //아이디 체크
+            case "idCheck":
+                action = new idCheckAction();
+                break;
+
         }
         return action;
     }

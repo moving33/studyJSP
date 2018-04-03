@@ -36,7 +36,6 @@ public class ControlServlet extends HttpServlet {
                 resp.sendRedirect(af.getUrl());
             }else{
                 //false면 req에 저장된 내용을들을 응답할때까지 사용할수 있게 ,
-
                 //서버에서 한번에 처리하기위헤 redirect로 넘기지 않고 서버에서 페이지를 이동시킨다.
                 RequestDispatcher rd = req.getRequestDispatcher(af.getUrl());
                 rd.forward(req,resp);

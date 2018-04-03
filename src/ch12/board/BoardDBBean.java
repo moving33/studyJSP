@@ -169,6 +169,7 @@ public class BoardDBBean {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement("SELECT * FROM board ORDER by ref desc , re_step asc limit ?,?");
@@ -232,11 +233,9 @@ public class BoardDBBean {
         BoardDataBean article = new BoardDataBean();
         int num = 0;
         if(numString == null && numString ==""){
-            System.out.println("1");
             return article;
         }else{
             if(numString != null && numString !="") {
-                System.out.println("2");
                 num = Integer.valueOf(numString.toString());
             }
         }
