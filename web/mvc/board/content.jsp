@@ -22,9 +22,65 @@
 
     <script>
         //수정 script
+        function updateArticle(article_num, page_num) {
+            var passwd = $("#passwd").val();
+            if (passwd == "" || passwd == null) {
+                alert("비밀번호를 입력해주세요");
+                return false;
+            }
+            var content = $("#content").val();
+            var subject = $("#subject").val();
+            var num = article_num;
+            var pageNum = page_num;
 
-        function updateArticle(${article} article) {
-            //todo
+            $.post(
+                "/board/updateForm.do", {
+                    content: content,
+                    subject: subject,
+                    num: num,
+                    passwd: passwd,
+                    pageNum: pageNum
+                }, function (data) {
+                    if (data == 1) {
+                        alert("수정 성공");
+                        document.location.href = "/board/list.do";
+                    } else {
+                        alert("비밀번호가 틀립니다.");
+                        return false;
+                    }
+                }
+            )
+        }
+
+        //삭제 script
+
+        function deleteArticle(article_num, page_num) {
+            var passwd = $("#passwd").val();
+            if (passwd == "" || passwd == null) {
+                alert("비밀번호를 입력해주세요");
+                return false;
+            }
+            var select = confirm("정말 삭제 하시겠습니까?");
+            if (select) {
+                var pageNum = page_num;
+                var num = article_num;
+                $.post(
+                    "/board/deletePro.do",{
+                        pageNum : pageNum,
+                        num : num,
+                        pass : passwd
+                    },function (data) {
+                        if (data == 1) {
+                            alert("수정 성공");
+                            document.location.href = "/board/list.do?pageNum="+pageNum;
+                        } else {
+                            alert("비밀번호가 틀립니다.");
+                            return false;
+                        }
+                    }
+                )
+            } else {
+            }
         }
 
 
@@ -40,9 +96,11 @@
             덧글 쓰기
         </button>
         <button class="btn btn-normal pull-right" id="modify" style="margin-left: 3px"
-                onclick="updateArticle(${article})">수정</button>
+                onclick="return updateArticle(${article.num},${pageNum})">수정
+        </button>
         <button class="btn btn-normal pull-right" id="delete" style="margin-left: 3px"
-                onclick="document.location.href='/board/deleteForm.do?num=${artilce.num}&pageNum=${pageNum}'">삭제</button>
+                onclick="return deleteArticle(${article.num},${pageNum})">삭제
+        </button>
         <button class="btn btn-normal pull-right" style="margin-left: 3px" id="goBack" onclick="history.back()">뒤로
             가기
         </button>

@@ -2,6 +2,7 @@ package mvc.model;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BoardDAO {
@@ -71,7 +72,7 @@ public class BoardDAO {
             pstmt.setInt(1, start-1);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                voList = new ArrayList<>(end);
+                voList = new ArrayList<>();
                 do {
                     BoardVO boardVO = new BoardVO();
                     boardVO.setNum(rs.getInt(1));
@@ -256,16 +257,19 @@ public class BoardDAO {
 
         try {
             conn = ConnUtil.getConnection();
-            pstmt = conn.prepareStatement("select PASS from board where num = ?");
+            pstmt = conn.prepareStatement("select passwd from board where num = ?");
             pstmt.setInt(1,article.getNum());
+            rs = pstmt.executeQuery();
             if(rs.next()){
                 dbpasswd = rs.getString("passwd");
                 if(dbpasswd.equals(article.getPasswd())){
-                    pstmt = conn.prepareStatement("update board set subject=?,content=?,reg_date=?");
+                    pstmt = conn.prepareStatement("update board set subject=?,content=?,reg_date=? where num=?");
                     pstmt.setString(1,article.getSubject());
                     pstmt.setString(2,article.getContent());
                     pstmt.setTimestamp(3,new Timestamp(System.currentTimeMillis()));
-                    result = pstmt.executeUpdate();
+                    pstmt.setInt(4,article.getNum());
+                    pstmt.executeUpdate();
+                    result = 1;
                 }else{
                     result = 0;
                 }
@@ -298,6 +302,122 @@ public class BoardDAO {
 
 
     }
+
+    //delete - article
+
+    public int deleteArticle(int num,String pass){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String dbpasswd = "";
+        int result = -1;
+
+        try {
+            conn = ConnUtil.getConnection();
+            pstmt = conn.prepareStatement("select passwd from board where num = ?");
+            pstmt.setInt(1,num);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                 dbpasswd = rs.getString("passwd");
+                if(dbpasswd.equals(pass)){
+                    pstmt = conn.prepareStatement("delete from board where num=?");
+                    pstmt.setInt(1,num);
+                    pstmt.executeUpdate();
+                    result = 1;
+                }else {
+                    result = 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                }
+            }
+        }
+        return result;
+    }
+
+    //search
+    public List<BoardVO> searchArticle(String option,String query,int start){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<BoardVO> voList = null;
+        String dbQuery = "%"+query+"%";
+        try {
+            conn = ConnUtil.getConnection();
+            if(option.equals("writer")) {
+                pstmt = conn.prepareStatement("select * from board where writer like ? order by ref desc ,re_step asc limit ?,5");
+            }
+            if(option.equals("subject")){
+                pstmt = conn.prepareStatement("select * from board where subject like ? order by ref desc ,re_step asc limit ?,5");
+
+            }
+                pstmt.setString(1,dbQuery);
+                pstmt.setInt(2,start-1);
+                rs = pstmt.executeQuery();
+                if(rs.next()){
+                    voList = new ArrayList<>();
+                    do{
+                        BoardVO boardVO = new BoardVO();
+                        boardVO.setNum(rs.getInt(1));
+                        boardVO.setWriter(rs.getString(2));
+                        boardVO.setSubject(rs.getString(3));
+                        boardVO.setContent(rs.getString(4));
+                        boardVO.setPasswd(rs.getString(5));
+                        boardVO.setReg_date(rs.getTimestamp(6));
+                        boardVO.setIp(rs.getString(7));
+                        boardVO.setReadcount(rs.getInt(8));
+                        boardVO.setRef(rs.getInt(9));
+                        boardVO.setRef_step(rs.getInt(10));
+                        boardVO.setRe_level(rs.getInt(11));
+                        voList.add(boardVO);
+                    }while(rs.next());
+                }else{
+                    voList = Collections.emptyList();
+                }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                }
+            }
+        }
+        return voList;
+    }
+
 
 
 }

@@ -6,12 +6,13 @@ import mvc.model.BoardVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collections;
 import java.util.List;
 
-public class ListAction implements CommandAction {
+public class SearchProAction implements CommandAction {
     @Override
     public String requestPro(HttpServletRequest req, HttpServletResponse resp) throws Throwable {
+        req.setCharacterEncoding("utf-8");
+
         String pageNum = req.getParameter("pageNum");
         if(pageNum == null){
             pageNum ="1";
@@ -19,30 +20,29 @@ public class ListAction implements CommandAction {
         int pageSize = 5; // 한페이지의 글의 개수
         int currentPage = Integer.valueOf(pageNum);
         int startRow = (currentPage -1 )* pageSize +1;
-        int endRow = currentPage * pageSize; // 한페이지의 마지막 글번호
-        System.out.println(startRow+" :startRow /"+endRow+" :endRow");
-        int count = 0;  //전체 글의 개수
-        int number = 0; //글 목록에 표시할 글번호
+
+        String option = req.getParameter("option");
+        String query = req.getParameter("query");
 
         List<BoardVO> voList = null;
-        BoardDAO dao = BoardDAO.getInstance();
-        count = dao.getArticleCount(); //전체 글의 개수
-        if(count>0){
-            voList = dao.getArticle(startRow,endRow);
-        }else {
-            voList = Collections.emptyList();
-        }
-        number = count - (currentPage-1)*pageSize;
+        BoardDAO boardDAO = BoardDAO.getInstance();
+        voList = boardDAO.searchArticle(option, query, startRow);
 
         req.setAttribute("currentPage",new Integer(currentPage));
         req.setAttribute("startRow",new Integer(startRow));
-        req.setAttribute("endRow",new Integer(endRow));
-        req.setAttribute("count",new Integer(count));
         req.setAttribute("pageSize",new Integer(pageSize));
-        req.setAttribute("number",new Integer(number));
         req.setAttribute("voList",voList);
+        //search문 확인 code
+        int result = 1;
+        if(voList.isEmpty()){
+            result = 0;
+        }
+        req.setAttribute("search",new Integer(result));
+        System.out.println(result);
 
         return "/mvc/board/list.jsp";
 
     }
+
+
 }
