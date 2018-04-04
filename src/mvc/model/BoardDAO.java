@@ -418,6 +418,52 @@ public class BoardDAO {
         return voList;
     }
 
+    //- Article search count
+    public int getSearchArticleCount(String option,String query) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String dbQuery = "%"+query+"%";
+        int x = 0;
+
+        try {
+            conn = ConnUtil.getConnection();
+            if(option.equals("writer")) {
+                pstmt = conn.prepareStatement("select count(*) from board where writer like ?");
+            }
+            if(option.equals("subject")){
+                pstmt = conn.prepareStatement("select count(*) from board where subject like ?");
+            }
+            pstmt.setString(1,dbQuery);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                x = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                }
+            }
+        }
+
+        return x;
+    }
 
 
 }

@@ -19,9 +19,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
     <%--검색 스크립트--%>
     <script>
+
+        jQuery.fn.highlight = function(pat) {
+            function innerHighlight(node, pat) {
+                var skip = 0;
+                if (node.nodeType == 3) {
+                    var pos = node.data.toUpperCase().indexOf(pat);
+                    if (pos >= 0) {
+                        var spannode = document.createElement('span');
+                        spannode.className = 'highlight';
+                        var middlebit = node.splitText(pos);
+                        var endbit = middlebit.splitText(pat.length);
+                        var middleclone = middlebit.cloneNode(true);
+                        spannode.appendChild(middleclone);
+                        middlebit.parentNode.replaceChild(spannode, middlebit);
+                        skip = 1;
+                    }
+                }
+                else if (node.nodeType == 1 && node.childNodes && !/(script|style)/i.test(node.tagName)) {
+                    for (var i = 0; i < node.childNodes.length; ++i) {
+                        i += innerHighlight(node.childNodes[i], pat);
+                    }
+                }
+                return skip;
+            }
+            return this.length && pat && pat.length ? this.each(function() {
+                innerHighlight(this, pat.toUpperCase());
+            }) : this;
+        };
+
+        jQuery.fn.removeHighlight = function() {
+            return this.find("span.highlight").each(function() {
+                this.parentNode.firstChild.nodeName;
+                with (this.parentNode) {
+                    replaceChild(this.firstChild, this);
+                    normalize();
+                }
+            }).end();
+        };
+
+
         function searchArticle() {
             var searchValue = $("#searchValue").val().trim();
             var option = $("#searchOption").val();
@@ -32,7 +71,41 @@
             document.location.href="/board/searchPro.do?query="+searchValue+"&option="+option;
         }
 
+      /*  $(document).ready(function () {
+            if($("#option").val() != null){
+                var option = $("#option").val();
+                var query  = $("#query").val();
+                alert("bbb");
+                if(option == "writer"){
+                    /!*var replaceD = "<span class='highlight' style='background-color: yellow'>"+query+"</span>";
+                    var text = $(".info_writer").text();
+                    text = text.replace(query,replaceD)*!/;
+                    $(".info_writer").highlight(query);
+                    alert("aa");
+                }if(option == "subject"){
+                    var replaceD = "<span class='highlight' style='background-color: yellow'>"+query+"</span>";
+                    var text = $(".info_subject").text();
+                    text = text.replace(query,replaceD);
+                    $(".info_subject").html(text);
+                }
+            }
+        });*/
+
+        function highlightText() {
+            var option = $("#option").val();
+            var query  = $("#query").val();
+            if(option == "writer"){
+                $(".info_writer").highlight(query);
+            }if(option == "subject"){
+                $(".info_subject").highlight(query);
+            }
+        }
     </script>
+    <style>
+        .highlight{
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
 <div class="container" style="margin:15px">
@@ -202,6 +275,9 @@
         </script>
     </c:if>
     <c:if test="${search == 1}">
+        <%--검색어 하이라이트주기--%>
+        <input type="hidden" id="option" value="${option}">
+        <input type="hidden" id="query" value="${query}">
         <table class="table table-bordered" style="margin: 15px">
             <colgroup>
                 <col width="7%">
@@ -232,7 +308,7 @@
                                  height="16">
                             <img src="/image/KakaoTalk_20180320_113843804.gif">
                         </c:if>
-                        <a href="/board/content.do?num=${voList.num}&pageNum=${currentPage}">
+                        <a href="/board/content.do?num=${voList.num}&pageNum=${currentPage}" class="info_subject">
                                 ${voList.subject}
                         </a>
                         <c:if test="${voList.readcount >= 20}">
@@ -240,7 +316,7 @@
                         </c:if>
                     </td>
                         <%--작성자--%>
-                    <td class="text-center">
+                    <td class="text-center info_writer">
                             ${voList.writer}
                     </td>
                         <%-- 작성일 --%>
@@ -255,6 +331,9 @@
                             ${voList.ip}
                     </td>
                 </tr>
+                <script type="text/javascript">
+                    highlightText();
+                </script>
             </c:forEach>
         </table>
         <div style="margin-left: 20px;">
@@ -286,6 +365,7 @@
                         </div>
                     </div>
                 </div>
+                <%--페이징처리--%>
                 <div class="col-6" style="margin-top: 9px;">
                     <ul class="pagination">
                         <c:if test="${count>0}">
@@ -305,7 +385,7 @@
                             <c:if test="${startPage > pageBlock}">
                                 <li class="page-item">
                                     <button class="page-link"
-                                            onclick="location.href='/board/list.do?pageNum=${startPage-pageBlock}'">
+                                            onclick="location.href='/board/searchPro.do?pageNum=${startPage-pageBlock}&option=${option}&query=${query}'">
                                         Previous
                                     </button>
                                 </li>
@@ -314,14 +394,14 @@
                                 <c:choose>
                                     <c:when test="${currentPage == i}">
                                         <li class="page-item active"></li>
-                                        <button onclick="location.href='/board/list.do?pageNum=${i}'"
+                                        <button onclick="location.href='/board/searchPro.do?pageNum=${i}&option=${option}&query=${query}'"
                                                 class="page-link">${i}
                                         </button>
                                         </li>
                                     </c:when>
                                     <c:otherwise>
                                         <li class="page-item"></li>
-                                        <button onclick="location.href='/board/list.do?pageNum=${i}'"
+                                        <button onclick="location.href='/board/searchPro.do?pageNum=${i}&option=${option}&query=${query}'"
                                                 class="page-link">${i}
                                         </button>
                                         </li>
@@ -331,7 +411,7 @@
                             </c:forEach>
                             <c:if test="${endPage < pageCount}">
                                 <li class="page-item">
-                                    <button onclick="location.href='/board/list.do?pageNum=${startPage+pageBlock}'"
+                                    <button onclick="location.href='/board/searchPro.do?pageNum=${startPage+pageBlock}&option=${option}&query=${query}'"
                                             class="page-link">Next
                                     </button>
                                 </li>

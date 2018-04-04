@@ -20,18 +20,25 @@ public class SearchProAction implements CommandAction {
         int pageSize = 5; // 한페이지의 글의 개수
         int currentPage = Integer.valueOf(pageNum);
         int startRow = (currentPage -1 )* pageSize +1;
+        int count = 0;
 
         String option = req.getParameter("option");
         String query = req.getParameter("query");
 
         List<BoardVO> voList = null;
         BoardDAO boardDAO = BoardDAO.getInstance();
+
+        count = boardDAO.getSearchArticleCount(option,query);
+
         voList = boardDAO.searchArticle(option, query, startRow);
 
+        req.setAttribute("count",new Integer(count));
         req.setAttribute("currentPage",new Integer(currentPage));
         req.setAttribute("startRow",new Integer(startRow));
         req.setAttribute("pageSize",new Integer(pageSize));
         req.setAttribute("voList",voList);
+        req.setAttribute("option",option);
+        req.setAttribute("query",query);
         //search문 확인 code
         int result = 1;
         if(voList.isEmpty()){
